@@ -2,35 +2,26 @@
 /*eslint-env browser*/
 /*eslint 'no-console': 0*/
 
-var btn = document.getElementById('btn');
+// btns is de array met hartjes
+var btns = document.querySelectorAll('i');
+
+
 
 function geklikt() {
-    if (btn.classList.contains('far')) {
-        btn.classList.remove('far');
-        btn.classList.add('fas');
+    var teller = document.querySelector('li a span');
+
+    if (this.classList.contains('far')) {
+        this.classList.remove('far');
+        this.classList.add('fas');
+        teller.innerHTML = parseInt(teller.innerHTML) + 1;
+
     } else {
-        btn.classList.remove('fas');
-        btn.classList.add('far');
+        this.classList.remove('fas');
+        this.classList.add('far');
+        teller.innerHTML = parseInt(teller.innerHTML) - 1;
     }
 }
-btn.addEventListener('click', geklikt);
 
-var checked0 = false;
-
-var mijnFilm = document.querySelector("section article div");
-
-var nummer = 0;
-var teller = document.querySelector('li a span');
-
-btn[0].addEventListener('click', function () {
-    btn[0].classList.toggle('clicked');
-    if (checked0 === false) {
-        mijnFilm.innerHTML += '<p> Bad Boys </p>';
-        nummer++;
-        checked0 = true;
-    } else {
-        nummer--;
-        checked0 = false;
-    }
-    teller.textContent = nummer;
-})
+btns.forEach(function (btn) {
+    btn.addEventListener('click', geklikt);
+});
