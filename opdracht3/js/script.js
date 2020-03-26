@@ -2,25 +2,33 @@
 /*eslint-env browser*/
 /*eslint 'no-console': 0*/
 
+/* Hier komen de films tevoorschijn op html*/
 var filmContainer = document.getElementById('film-info');
 
+/* knop waar je op klikt, waarna de films tevoorschijn komen*/
 var btn = document.getElementById('btn');
+/*click event, die de functie aanroept*/
 btn.addEventListener('click', function () {
-    var request = new XMLHttpRequest();
-    request.open('GET', 'https://koopreynders.github.io/frontendvoordesigners/opdracht3/json/movies.json');
-    request.onload = function () {
-        var myData = JSON.parse(request.responseText);
+    /* hiermee maak je verbinding met de url waar je alle info vandaan haalt*/
+    var verzoek = new XMLHttpRequest();
+    verzoek.open('GET', 'https://koopreynders.github.io/frontendvoordesigners/opdracht3/json/movies.json');
+    /*verzoek wordt uitgevoerd*/
+    verzoek.onload = function () {
+        /* hier vertelt de server dat het een json is*/
+        var myData = JSON.parse(verzoek.responseText);
         weergevenHtml(myData);
     };
-    request.send();
+    /* hiermee stuur je het verzoek naar de url*/
+    verzoek.send();
 });
 
-
-function weergevenHtml(data) {
+/* hiermee geef je de films weer in html*/
+function weergevenHtml(films) {
     var htmlTekst = '';
 
-    for (i = 0; i < data.length; i++) {
-        htmlTekst += "<p>" + data[i].title + "<br> " + data[i].plot + ".</p>";
+    for (i = 0; i < films.length; i++) {
+        htmlTekst += "<p>" + films[i].title + "<br> " + films[i].plot + ".</p>";
+        htmlTekst += "<p>" + films[i].cover + "<br>" + films[i].simple_plot + ".</p>";
     }
 
     filmContainer.insertAdjacentHTML('beforeend', htmlTekst);
