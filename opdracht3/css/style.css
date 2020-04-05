@@ -3,17 +3,11 @@ body {
     font-family: 'Inconsolata', monospace;
 }
 
-#film-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 40px;
-    padding: 20px;
-}
+/*** HEADER ****/
 
 h1 {
     font-size: 4rem;
     text-align: center;
-
 }
 
 #btn {
@@ -33,6 +27,48 @@ h1 {
     padding: 20px;
 }
 
-.title {
+/*** DE FILMS ***/
+
+#film-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 40px;
+    padding: 20px;
+}
+
+#film-info article {
+    background-color: lightsteelblue;
     border: 1px solid black;
+}
+
+#film-info article h2 {
+    text-align: center;
+    color: black;
+
+}
+
+#film-info article img {
+    display: flex;
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+    transition: width .3s ease-in;
+}
+
+#film-info article img:hover {
+    width: 60%;
+
+}
+
+#film-info article p {
+    text-align: justify;
+    padding: 30px;
+    font-family: 'Comic Neue', cursive;
+}
+
+#film-info article video {
+    display: flex;
+    margin: auto;
+    padding-bottom: 15px;
+    width: 90%;
 }
