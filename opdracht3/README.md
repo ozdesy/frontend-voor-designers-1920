@@ -4,7 +4,7 @@ Ik heb in javascript een element aangemaakt voor de trailer, alleen speelt hij n
   
   Alvast bedankt!
 
-
+______________________________________________________________________________________________________________________________
 
 
 
