@@ -2,52 +2,68 @@
 /*eslint-env browser*/
 /*eslint 'no-console': 0*/
 
-/* Hier komen de films tevoorschijn op html*/
+/**** LOADER *****/
+
+window.addEventListener("load", function () {
+    const loader = document.querySelector(".loader");
+    loader.className += " hidden";
+});
+
+
+/****** HIER KOMEN DE FILMS TEVOORSCHIJN OP HTML **********/
 var filmContainer = document.getElementById('film-info');
 
-/* knop waar je op klikt, waarna de films tevoorschijn komen*/
+/****** BTN IS DE KNOP WAAR JE OP KLIKT, VERVOLGENS KOMEN DE FILMS TEVOORSCHIJN ******/
 var btn = document.getElementById('btn');
-/*click event, die de functie aanroept*/
+
+/****** DIT IS DE CLICK EVENT, DEZE EVENT ROEPT DE FUNCTIE AAN *****/
 btn.addEventListener('click', function () {
-    /* hiermee maak je verbinding met de url waar je alle info vandaan haalt*/
+    /***** MET VERZOEK MAAK JE VERBINDING MET DE URL WAAR ALLE INFORMATIES VANDAAN KOMEN *****/
     var verzoek = new XMLHttpRequest();
     verzoek.open('GET', 'https://koopreynders.github.io/frontendvoordesigners/opdracht3/json/movies.json');
-    /*verzoek wordt uitgevoerd*/
+    /****** DOOR ONLOAD WORDT HET VERZOEK UITGEVOERD *****/
     verzoek.onload = function () {
-        /* hier vertelt de server dat het een json is*/
+        /***** HIER WORDT VERTELD DAT DE SERVER WAAR HET INFORMATIE VANDAAN KOMT EEN JSON IS *****/
         var deFilms = JSON.parse(verzoek.responseText);
         filmsToevoegen(deFilms);
     };
-    /* hiermee stuur je het verzoek naar de url*/
+    /***** SEND STUURT HET VERZOEK NAAR DE URL *****/
     verzoek.send();
 });
 
-/* hiermee geef je de films weer in html*/
+/***** DEZE FUNCTIE ZORGT ERVOOR DAT DE FILMS WORDEN WEERGEGEVEN IN DE HTML *****/
 function filmsToevoegen(deFilms) {
-    for (i = 0; i < deFilms.length; i++) {
+    for (let i = 0; i < deFilms.length; i++) {
         let nieuweFilm = document.createElement("article");
         let nieuweTitle = document.createElement("h2");
         let nieuweSimplePlot = document.createElement("p");
         let nieuweCover = document.createElement("img");
         let nieuweDatum = document.createElement("p");
         let nieuweTrailer = document.createElement("video");
-        let nieuweReviews = document.createElement("p");
-
 
         nieuweTitle.innerHTML = deFilms[i].title;
         nieuweSimplePlot.innerHTML = deFilms[i].simple_plot;
         nieuweCover.src = deFilms[i].cover;
         nieuweDatum.innerHTML = deFilms[i].release_date;
-        nieuweTrailer.src = deFilms[i].trailer;
-        nieuweReviews.innerHTML = deFilms[i].reviews;
+
+
+        /* een video heeft één of meer source elementen */
+        let nieuweTrailerSource = document.createElement("source");
+        /* daaraan voeg je de src en een type toe */
+        nieuweTrailerSource.src = deFilms[i].trailer;
+        nieuweTrailerSource.setAttribute("type", "video/mp4");
+        /* het source element voeg je toe aan de video*/
+        nieuweTrailer.appendChild(nieuweTrailerSource);
+        /* en hiermee voeg je de controls toe aan de video  */
+        nieuweTrailer.setAttribute("controls", "true");
+
+
 
         nieuweFilm.appendChild(nieuweTitle);
         nieuweFilm.appendChild(nieuweCover);
         nieuweFilm.appendChild(nieuweSimplePlot);
         nieuweFilm.appendChild(nieuweDatum);
         nieuweFilm.appendChild(nieuweTrailer);
-        nieuweFilm.appendChild(nieuweReviews);
-
 
         filmContainer.appendChild(nieuweFilm);
 

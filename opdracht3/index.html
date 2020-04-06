@@ -7,9 +7,20 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8161fc8498.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+
+    <nav>
+        <label class="logo">films</label>
+        <ul>
+            <li><a href="#">New</a></li>
+            <li><a href="#">Films</a></li>
+            <li><a href="#">Series</a></li>
+        </ul>
+    </nav>
+
     <header>
         <h1>Films</h1>
         <button id="btn">Click for the films</button>
@@ -17,13 +28,18 @@
         <p></p>
     </header>
 
-    <main id="film-info"></main>
 
+    <div class="loader">
+        <img src="img/Spinner-1s-200px.gif" alt="loading...">
+    </div>
+    <h2 id="loading">
+        <p></p>
+    </h2>
 
+    <main id="film-info">
+    </main>
 </body>
-
-
-
-<script src="js/script.js"></script>
+<script src="js/script.js">
+</script>
 
 </html>
