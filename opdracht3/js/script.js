@@ -2,70 +2,83 @@
 /*eslint-env browser*/
 /*eslint 'no-console': 0*/
 
-/**** LOADER *****/
-
+/* PAGE LOADER */ // Wanneer de pagina opent, komt het 'loading' icoon tevoorschijn. Dit verdwijnt na een aantal seconde. Vervolgens wordt de blank page zichtbaar en kan de gebruiker de pagina gebruiken. Bij elke refresh komt 'loading' weer tevoorschijn. // Video bekeken op youtube, vervolgens toegepast in mijn ontwerp. // Bron van video: https://www.youtube.com/watch?v=xuA83OYTE7I
 window.addEventListener("load", function () {
     const loader = document.querySelector(".loader");
     loader.className += " hidden";
 });
 
+/* BACK TO TOP */ // Wanneer de films zichtbaar zijn, en de gebruiker naar beneden scrollt, verschijnt er een button waarop je kan klikken om in een keer naar boven te gaan. // Ik heb eerst een tutorial bekeken op youtube, waarna ik het heb toegepast in mijn ontwerp. // Bron van tutorial: https://www.youtube.com/watch?v=FK5DEa1Hvco&t=593s
+const buttonBackToTop = document.querySelector("#backtotop");
+window.addEventListener("scroll", scrollFunction);
 
-/****** HIER KOMEN DE FILMS TEVOORSCHIJN OP HTML **********/
+function scrollFunction() {
+    if (window.pageYOffset > 350) {
+        buttonBackToTop.style.display = "block";
+    } else {
+        buttonBackToTop.style.display = "none";
+    }
+}
+buttonBackToTop.addEventListener("click", backToTop)
+
+function backToTop() {
+    window.scrollTo(0, 0);
+};
+
+/* DARK MODE */ // Op deze website is het mogelijk om een dark mode in te stellen. Boven aan de linkerkant is er een button beschikbaar, waarmee je de dark/light mode kan instellen. // Ik heb een video bekeken op youtube die me heeft geholpen bij het toepassen van deze code. // Bron: https://www.youtube.com/watch?v=xodD0nw2veQ&t=12s
+const checkbtn = document.getElementById("check");
+checkbtn.addEventListener('change', () => {
+    document.body.classList.toggle('dark');
+})
+
+
+/* FILMS */ // Hier komen de films tevoorschijn op HTML //
 var filmContainer = document.getElementById('film-info');
 
-/****** BTN IS DE KNOP WAAR JE OP KLIKT, VERVOLGENS KOMEN DE FILMS TEVOORSCHIJN ******/
+/* BUTTON FILMS */ // Dit is de knop waar je op kan klikken om de films te bekijken. Wanneer je hierop klikt, komen alle films tevoorschijn. //
 var btn = document.getElementById('btn');
-
-/****** DIT IS DE CLICK EVENT, DEZE EVENT ROEPT DE FUNCTIE AAN *****/
 btn.addEventListener('click', function () {
-    /***** MET VERZOEK MAAK JE VERBINDING MET DE URL WAAR ALLE INFORMATIES VANDAAN KOMEN *****/
-    var verzoek = new XMLHttpRequest();
+    var verzoek = new XMLHttpRequest(); // hier maken we verbinding met de URL waar alle informatie vandaan komt.
     verzoek.open('GET', 'https://koopreynders.github.io/frontendvoordesigners/opdracht3/json/movies.json');
-    /****** DOOR ONLOAD WORDT HET VERZOEK UITGEVOERD *****/
     verzoek.onload = function () {
-        /***** HIER WORDT VERTELD DAT DE SERVER WAAR HET INFORMATIE VANDAAN KOMT EEN JSON IS *****/
-        var deFilms = JSON.parse(verzoek.responseText);
+        var deFilms = JSON.parse(verzoek.responseText); // Hier wordt verteld dat de server waar het informatie vandaan komt een JSON is.
         filmsToevoegen(deFilms);
-    };
-    /***** SEND STUURT HET VERZOEK NAAR DE URL *****/
-    verzoek.send();
+    }; // door middel van 'onload' wordt het verzoek uitgevoerd.
+    verzoek.send(); // door middel van 'send' wordt het verzoek verzonden naar de URL.
 });
 
-/***** DEZE FUNCTIE ZORGT ERVOOR DAT DE FILMS WORDEN WEERGEGEVEN IN DE HTML *****/
+/* HTML WEERGEVEN */ // Deze functie zorgt ervoor dat de films worden weergegeven in html //
 function filmsToevoegen(deFilms) {
     for (let i = 0; i < deFilms.length; i++) {
-        let nieuweFilm = document.createElement("article");
-        let nieuweTitle = document.createElement("h2");
-        let nieuweSimplePlot = document.createElement("p");
-        let nieuweCover = document.createElement("img");
-        let nieuweDatum = document.createElement("p");
-        let nieuweTrailer = document.createElement("video");
+        let theFilm = document.createElement("article"); //Element article aangemaakt: Films worden in articles weergegeven
+        let theTitle = document.createElement("h2"); //Element h2 aangemaakt: Title komt tevoorschijn in de h2
+        let theSimplePlot = document.createElement("p"); //Element p aangemaakt: Korte uitleg 'simple plot' wordt zichtbaar in de p 'alinea'.
+        let theCover = document.createElement("img"); //Element img aangemaakt: Afbeelding van de film wordt weergegeven in de img van de html.
+        let theDate = document.createElement("p"); //Element p aangemaakt: Release datum wordt weergegeven in de p
+        let theGenres = document.createElement("li"); //Element 'li' aangemaakt: Genres worden weergegeven als een opsomming
+        let theTrailer = document.createElement("video"); //Element 'video' aangemaakt: Trailer wordt weergegeven als een video
+        let theTrailerSource = document.createElement("source"); //Element voor video: een video heeft een of meer source elementen
 
-        nieuweTitle.innerHTML = deFilms[i].title;
-        nieuweSimplePlot.innerHTML = deFilms[i].simple_plot;
-        nieuweCover.src = deFilms[i].cover;
-        nieuweDatum.innerHTML = deFilms[i].release_date;
+        //informatie uit de JSON wordt gestopt in de elementen.
+        theTitle.innerHTML = deFilms[i].title;
+        theSimplePlot.innerHTML = deFilms[i].simple_plot;
+        theCover.src = deFilms[i].cover;
+        theDate.innerHTML = deFilms[i].release_date;
+        theGenres.innerHTML = deFilms[i].genres;
 
+        //een video heeft source elementen nodig. //Bron: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video // en uitleg: Sanne 't Hooft
+        theTrailerSource.src = deFilms[i].trailer; //src uit de JSON, dus 'trailer' in de source stoppen
+        theTrailerSource.setAttribute("type", "video/mp4"); //in de src komt er ook een type --> video/mp4 zodat de website weet om wat voor soort videobestand het gaat.
+        theTrailer.appendChild(theTrailerSource);
+        theTrailer.setAttribute("controls", "true"); //controls toevoegen aan de video // voor de knopjes.
 
-        /* een video heeft één of meer source elementen */
-        let nieuweTrailerSource = document.createElement("source");
-        /* daaraan voeg je de src en een type toe */
-        nieuweTrailerSource.src = deFilms[i].trailer;
-        nieuweTrailerSource.setAttribute("type", "video/mp4");
-        /* het source element voeg je toe aan de video*/
-        nieuweTrailer.appendChild(nieuweTrailerSource);
-        /* en hiermee voeg je de controls toe aan de video  */
-        nieuweTrailer.setAttribute("controls", "true");
+        theFilm.appendChild(theTitle); // titel toevoegen aan de article
+        theFilm.appendChild(theCover); // afbeelding toevoegen aan de article
+        theFilm.appendChild(theSimplePlot); // korte beschrijving van de film toevoegen aan de article
+        theFilm.appendChild(theDate); // datum toevoegen aan de article
+        theFilm.appendChild(theTrailer); // trailer toevoegen aan de article
+        theFilm.appendChild(theGenres); // genres toevoegen aan de article
 
-
-
-        nieuweFilm.appendChild(nieuweTitle);
-        nieuweFilm.appendChild(nieuweCover);
-        nieuweFilm.appendChild(nieuweSimplePlot);
-        nieuweFilm.appendChild(nieuweDatum);
-        nieuweFilm.appendChild(nieuweTrailer);
-
-        filmContainer.appendChild(nieuweFilm);
-
+        filmContainer.appendChild(theFilm); // article toevoegen aan de film container 'in de film container komt alles zichtbaar op html'
     }
 }

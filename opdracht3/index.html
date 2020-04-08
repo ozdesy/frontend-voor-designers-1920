@@ -4,31 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Opdracht 3</title>
+
+
+    <!------------- LINK NAAR STYLESHEET ------------>
     <link rel="stylesheet" href="css/style.css">
+
+    <!------------- LINK NAAR GOOGLE FONTS ------------>
     <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&display=swap" rel="stylesheet">
+    <!------------- LINK NAAR ICONS ------------>
     <script src="https://kit.fontawesome.com/8161fc8498.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
+    <!------------- HIER BEGINT DE NAVIGATIE ------------>
     <nav>
+        <!------------- DIT IS HET LOGO ----------->
         <label class="logo">films</label>
         <ul>
+            <!------------- DIT ZIJN DE LINKS ----------->
             <li><a href="#">New</a></li>
             <li><a href="#">Films</a></li>
             <li><a href="#">Series</a></li>
         </ul>
     </nav>
 
+    <!------------- DIT IS DE CHECKBOX VOOR DE LIGHT/DARK MODE ///// BRON: https://www.youtube.com/watch?v=xodD0nw2veQ&t=12s ----------->
+    <div>
+        <input type="checkbox" class="checkbox" id="check" />
+        <label for="check" class="label">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <div class="ball"></div>
+        </label>
+    </div>
+
+    <!------------- IN DE HEADER IS ER EEN H1 GEPLAATS MET DE LOGO EN EEN BUTTON WAAR JE OP KAN KLIKKEN, ZODAT DE FILMS ZICHTBAAR WORDEN OP DE WEBSITE, OOK IS ER EEN LEGE P ELEMENT IN DE HEADER, DIT IS VOOR HET INFORMATIE WAT ZICHTBAAR WORDT ALS DE GEGEVENS UI DE JSON LADEN ----------->
     <header>
         <h1>Films</h1>
         <button id="btn">Click for the films</button>
-
         <p></p>
     </header>
 
-
+    <!------------- DIT IS EEN DIV VOOR HET 'LOADING' ICON, HIERIN ZIT DUS EEN IMG MET EEN GIF, DIE TEVOORSCHIJN KOMT WANNEER DE PAGINA OPNIEUW WORDT GELADEN ----------->
     <div class="loader">
         <img src="img/Spinner-1s-200px.gif" alt="loading...">
     </div>
@@ -36,9 +55,23 @@
         <p></p>
     </h2>
 
+    <!------------- DIT IS DE MAIN VAN DE PAGINA, HIERIN BEVINDEN DE BELANGRIJKSTE INFORMATIE. DEZE MAIN IS LEEG, MAAR WORDT GEVULD WANNEER ER OP DE BUTTON WORDT GEKLIKT, EN DE INFORMATIE WORDT GELADEN /VANUIT JSON/ VERVOLGENS WORDT HET ZICHTBAAR OP DE PAGINA. AL HET INFORMATIE KOMT TEVOORSCHIJN IN DE MAIN VAN DE PAGINA ----------->
     <main id="film-info">
     </main>
+
+
+    <!------------- DIT IS EEN BUTTON WAARMEE JE NAAR BOVEN KAN SCROLLEN ----------->
+    <button id="backtotop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+
+    <footer>Copyright © Yesim Özdes 2020</footer>
 </body>
+
+
+
+<!------------- LINK NAAR JAVASCRIPT BESTAND ----------->
 <script src="js/script.js">
 </script>
 
