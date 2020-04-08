@@ -10,6 +10,8 @@ https://ozdesy.github.io/frontend-voor-designers-1920/
 ![FVD 3e OPDR 008](https://user-images.githubusercontent.com/58264754/78791446-2af31480-79b0-11ea-9baa-e83f391f6f76.png)
 ![FVD 3e OPDR 009](https://user-images.githubusercontent.com/58264754/78791449-2af31480-79b0-11ea-88b4-4609c9e670a3.png)
 
+______________________________________________________________________________________________________________________________
+
 Hoi Sanne, 
 
 Ik heb in javascript een element aangemaakt voor de trailer, alleen speelt hij niks af. Kan je misschien kijken wat ik daar fout doe. Ook heb ik een vraag hoe je de array moet toevoegen. Ik heb een <p> aangemaakt en dan de genres erin gezet, maar dan krijgt ik alleen [object],[object] te zien in mijn html ipv de genres. Ik weet dat ik iets fout doe omdat het een array is maar snap niet precies wat ik fout doe. Zou je er misschien naar kunnen kijken?
