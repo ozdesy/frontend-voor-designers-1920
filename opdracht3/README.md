@@ -1,4 +1,4 @@
-https://ozdesy.github.io/frontend-voor-designers-1920/
+https://ozdesy.github.io/frontend-voor-designers-1920/opdracht3/index.html
 
 ![FVD 3e OPDR 001](https://user-images.githubusercontent.com/58264754/78793066-321b2200-79b2-11ea-9fb4-4371fdb3a4e2.png)
 ![FVD 3e OPDR 002](https://user-images.githubusercontent.com/58264754/78793068-32b3b880-79b2-11ea-959f-b3cddb1d44b4.png)
